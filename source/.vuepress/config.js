@@ -1,3 +1,5 @@
+const navConf = require("./nav.js");
+
 module.exports = {
     description: 'The top Internet companies android interview questions and answers',
     dest: 'docs',
@@ -10,6 +12,25 @@ module.exports = {
         }
     },
     serviceWorker: true,
+    plugins: {
+        "vuepress-plugin-auto-sidebar": {
+            sort: {
+                mode: "asc",
+                readmeFirst: true,
+            },
+            title: {
+                mode: "default",
+                map: {}
+            },
+            sidebarDepth: 1,
+            collapse: {
+                open: false,
+                collapseList: [],
+                uncollapseList: []
+            },
+            ignore: []
+        },
+    },
     themeConfig: {
         repo: 'https://github.com/JackyAndroid/AndroidInterview-Q-A',
         editLinks: true,
@@ -26,13 +47,14 @@ module.exports = {
                         buttonText: "刷新"
                     }
                 },
-                sidebar: {
-                    '/interview/': genSidebarConfig()
-                },
-                nav: [{
-                    text: '题库',
-                    link: '/interview/',
-                }]
+                // sidebar: {
+                //     // '/interview/': genSidebarConfig()
+                // },
+                // nav: [{
+                //     text: '题库',
+                //     link: '/interview/',
+                // }]
+                nav: navConf
             }
         }
     }
@@ -47,36 +69,30 @@ function genSidebarConfig() {
                 '',
             ]
         },
-        {
-            title: 'Java',
-            collapsable: true,
-            children: [
-                'java',
-                '接口的意义-百度',
-                '抽象类的意义-乐视',
-                '抽象类接口区别-360',
-                '内部类的作用-乐视',
-                '父类的静态方法能否被子类重写-猎豹',
-                'java排序查找算法-美团',
-                '列举java的集合和继承关系-百度-美团',
-                '虚拟机-百度-乐视',
-                '内存模型',
-                '哪些情况下的对象会被垃圾回收机制处理掉-美团-小米',
-                '进程和线程的区别-猎豹-美团',
-                'HashMap的实现原理-美团',
-                'java多态-乐视',
-                '什么导致线程阻塞-58-美团',
-                '并发编程-猎豹',
-                '线程 线程池原理-腾讯',
-                '容器类之间的区别-乐视-美团',
-                'hashmap和hashtable的区别-乐视-小米',
-            ]
-        },
+        // {
+        //     title: 'Java',
+        //     collapsable: true,
+        //     children: [
+        //         'java',
+        //         '父类的静态方法能否被子类重写-猎豹',
+        //         'java排序查找算法-美团',
+        //         '列举java的集合和继承关系-百度-美团',
+        //         '虚拟机-百度-乐视',
+        //         '内存模型',
+        //         '进程和线程的区别-猎豹-美团',
+        //         'HashMap的实现原理-美团',
+        //         'java多态-乐视',
+        //         '什么导致线程阻塞-58-美团',
+        //         '并发编程-猎豹',
+        //         '线程 线程池原理-腾讯',
+        //         '容器类之间的区别-乐视-美团',
+        //         'hashmap和hashtable的区别-乐视-小米',
+        //     ]
+        // },
         {
             title: 'Android',
             collapsable: true,
             children: [
-                '如何导入外部数据库-小米',
                 'intentService作用是什么，AIDL解决了什么问题？-小米',
                 'Android属性动画特性-乐视-小米',
                 '描述一次网络请求的流程-新浪',
@@ -84,8 +100,7 @@ function genSidebarConfig() {
                 'launchmode应用场景-百度-小米-乐视',
                 'Touch事件传递流程-小米',
                 'view绘制流程-百度',
-                '多线程-360',
-                '线程同步-百度',
+                '屏幕刷新机制-腾讯',
                 '什么情况导致内存泄漏-美团',
                 '垃圾回收',
                 'ANR定位和修正',
@@ -102,6 +117,8 @@ function genSidebarConfig() {
                 'Glide源码解析',
                 '设计模式',
                 '架构设计-搜狐',
+                'Apk打包流程',
+                '常用Framework模块原理',
             ]
         },
         {
@@ -123,3 +140,63 @@ function genSidebarConfig() {
         }
     ]
 }
+
+
+
+// module.exports = {
+//     themeConfig: {
+//         sidebar: {
+//             "/zh/guide/": [
+//                 {
+//                     title: "Markdown 增强",
+//                     icon: "markdown",
+//                     prefix: "markdown/",
+//                     collapsable: false,
+//                     children: [
+//                         "intro",
+//                         "components",
+//                         "align",
+//                         "sup-sub",
+//                         "footnote",
+//                         "mark",
+//                         "tex",
+//                         "flowchart",
+//                         "demo",
+//                         "presentation",
+//                         "external",
+//                     ],
+//                 },
+//                 {
+//                     title: "博客",
+//                     icon: "layout",
+//                     prefix: "blog/",
+//                     collapsable: false,
+//                     children: ["intro", "home", "category-and-tags"],
+//                 },
+//             ],
+
+//             "/zh/config/": [
+//                 {
+//                     title: "主题配置",
+//                     icon: "config",
+//                     prefix: "theme/",
+//                     collapsable: false,
+//                     children: ["", "default", "feature", "plugin", "apperance"],
+//                 },
+//                 "page",
+//                 "stylus",
+//                 {
+//                     title: "插件配置",
+//                     icon: "plugin",
+//                     prefix: "plugin/",
+//                     collapsable: false,
+//                     children: ["", "container", "copyright"],
+//                 },
+//             ],
+
+
+
+//             "/zh/": ["", "guide/", "config/", "basic/", "FAQ/", "demo/"],
+//         },
+//     },
+// };
